@@ -2,6 +2,8 @@ const express = require("express");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 
+const cors = require("cors");
+
 const isDev = process.env.NODE_ENV !== "production";
 
 // Multi-process to utilize all CPU cores.
@@ -21,11 +23,19 @@ ${worker.process.pid} exited: code ${code}, signal ${signal}`
     );
   });
 } else {
+  const PORT = process.env.PORT || 8001;
   const app = express();
   const morgan = require("morgan");
   const path = require("path");
 
-  const PORT = process.env.PORT || 8001;
+  app.use(
+    cors({
+      origin: [
+        "https://bwd-email-server.herokuapp.com/",
+        "http://127.0.0.1:5500/index.html",
+      ],
+    })
+  );
 
   // Priority serve any static files.
   // Replace the example to connect to your frontend.
