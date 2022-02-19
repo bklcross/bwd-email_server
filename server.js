@@ -30,7 +30,7 @@ ${worker.process.pid} exited: code ${code}, signal ${signal}`
 
   app.use(
     cors({
-      origin: ["http://beachwestdental.com/", "http://127.0.0.1:5500"],
+      origin: ["https://beachwestdental.com", "http://127.0.0.1:5500"],
     })
   );
 
