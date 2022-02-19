@@ -31,7 +31,7 @@ ${worker.process.pid} exited: code ${code}, signal ${signal}`
   app.use(
     cors({
       origin: [
-        "https://bwd-email-server.herokuapp.com/",
+        "http://beachwestdental.com/",
         "http://127.0.0.1:5500/index.html",
       ],
     })
