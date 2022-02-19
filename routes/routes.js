@@ -29,21 +29,22 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
+  console.log("body: ", req.body);
+  const { name, email, tel, message, date } = req.body;
+
   //make mailable object
   const mail = {
     from: process.env.SMTP_EMAIL,
     to: process.env.SMTP_EMAIL,
     subject: "New Contact Form Submission",
     text: `
-    from:
-    ${req.body.name}
+    from: ${name}
 
-    contact details
-    email: ${req.body.email}
-    phone: ${req.body.tel}
+    email: ${email}
+    phone: ${tel}
+    date: ${date}
 
-    message:
-    ${req.body.message}`,
+    message: ${message}`,
   };
 
   transporter.sendMail(mail, (err, data) => {
